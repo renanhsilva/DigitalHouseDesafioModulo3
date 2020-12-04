@@ -11,13 +11,14 @@ import digitalhouse.desafio.modulo3.Serialized.Comic
 
 
 
-class HomeAdapter () :RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter (val hqs: ArrayList<Comic>, val listener: OnClickItemListener) :RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
-    var listComics = arrayListOf<Comic>()
+    var listComics = ArrayList<Comic>()
 
     class HomeViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val ivComics : ImageView = itemView.iv_
-        val tvComics : TextView = itemView.tvComics
+        val ivComics : ImageView = itemView.findViewById(R.id.img_comics)
+        val tvComics : TextView = itemView.findViewById(R.id.tv_comics)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -40,5 +41,9 @@ class HomeAdapter () :RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     fun addComic(list: ArrayList<Comic>){
         listComics.addAll(list)
         notifyDataSetChanged()
+    }
+
+    interface OnClickItemListener {
+        fun OnClickItem(position: Int)
     }
 }

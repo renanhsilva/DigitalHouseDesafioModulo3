@@ -14,16 +14,16 @@ import java.math.BigInteger
 import java.security.MessageDigest
 
 
-class HomeViewModel(val marvelAPI: Retrofit) : ViewModel() {
+class HomeViewModel(val marvelApi: ServiceAPI) : ViewModel() {
 
     val listComics = MutableLiveData<Data>()
     val pubKey = "76c3653804591bc119feb8a8bced8a2a"
     val privKey = "c66e227de4893ad4b2d2c1578517b83a87d9c606"
     val ts = System.currentTimeMillis()
 
-    fun getComics() {
+    fun getHQs() {
         viewModelScope.launch(Dispatchers.Main) {
-            val response = marvelAPI.getResults(
+            val response = marvelApi.getResults(
                 offset = 1,
                 limit = 20,
                 ts = ts,
