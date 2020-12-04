@@ -1,23 +1,20 @@
-package com.example.desafiowebservice.viewmodel
+package digitalhouse.desafio.modulo3
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.desafiowebservice.entities.Comic
-import com.example.desafiowebservice.entities.Data
-import com.example.desafiowebservice.services.ServiceMarvelAPI
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import digitalhouse.desafio.modulo3.Serialized.Data
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Response
-import java.lang.Exception
+import retrofit2.Retrofit
 import java.math.BigInteger
 import java.security.MessageDigest
 
-class HomeViewModel(val marvelAPI: ServiceMarvelAPI) : ViewModel() {
+
+class HomeViewModel(val marvelAPI: Retrofit) : ViewModel() {
 
     val listComics = MutableLiveData<Data>()
     val pubKey = "76c3653804591bc119feb8a8bced8a2a"

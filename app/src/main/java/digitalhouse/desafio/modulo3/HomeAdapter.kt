@@ -1,5 +1,4 @@
-package com.example.desafiowebservice.adapter
-
+package digitalhouse.desafio.modulo3
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,24 +6,26 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import digitalhouse.desafio.modulo3.R
+import com.bumptech.glide.Glide
+import digitalhouse.desafio.modulo3.Serialized.Comic
 
 
-class ComicAdapter () :RecyclerView.Adapter<ComicAdapter.ComicViewHolder>() {
+
+class HomeAdapter () :RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     var listComics = arrayListOf<Comic>()
 
-    class ComicViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val ivComics : ImageView = itemView.img_comics
-        val tvComics : TextView = itemView.tv_comics
+    class HomeViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView) {
+        val ivComics : ImageView = itemView.iv_
+        val tvComics : TextView = itemView.tvComics
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComicViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val itemView : View = LayoutInflater.from(parent.context).inflate(R.layout.item_hq, parent, false)
-        return ComicViewHolder(itemView)
+        return HomeViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ComicViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val comic = listComics.get(position)
 
         holder.tvComics.text = "#$comic.id"
