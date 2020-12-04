@@ -15,7 +15,8 @@ interface ServiceAPI{
         @Query("limit")limit: Int,
         @Query("ts") ts: Long,
         @Query("apikey")apiKey: String,
-        @Query("hash")hash: String
+        @Query("hash")hash: String,
+        @Query("orderBy") orderBy : String = "modified"
     ): JsonObject
 }
 

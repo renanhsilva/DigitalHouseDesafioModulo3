@@ -30,10 +30,7 @@ class HomeViewModel(val marvelApi: ServiceAPI) : ViewModel() {
                 apiKey = pubKey,
                 hash = getHash(ts.toString() + privKey + pubKey)
             ).get("data")
-            val result = Gson().fromJson(
-                response,
-                object : TypeToken<Data>() {}.type
-            ) as Data
+            val result = Gson().fromJson(response, object : TypeToken<Data>() {}.type) as Data
             listComics.value = result
             Log.i("resultado_api", listComics.value.toString())
         }
