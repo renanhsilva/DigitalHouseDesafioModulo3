@@ -7,16 +7,17 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import digitalhouse.desafio.modulo3.Serialized.Comic
 import digitalhouse.desafio.modulo3.Serialized.Data
 import kotlinx.android.synthetic.main.activity_home.*
 
 
-class HomeActivity : AppCompatActivity(), HomeAdapter.OnClickItemListener {
+class HomeActivity : AppCompatActivity(){
 
-    var listHQs = ArrayList<Comic>()
     lateinit var homeAdapter: HomeAdapter
+    lateinit var gridLayoutManager: GridLayoutManager
 
     val viewModel by viewModels<HomeViewModel> {
         object : ViewModelProvider.Factory {
@@ -29,22 +30,18 @@ class HomeActivity : AppCompatActivity(), HomeAdapter.OnClickItemListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        setContentView(R.layout.activity_home)
 
-        homeAdapter = HomeAdapter(listHQs, this)
+        homeAdapter = HomeAdapter()
+        gridLayoutManager = GridLayoutManager(this,3)
         rv_hqs.adapter = homeAdapter
-        rv_hqs.layoutManager = GridLayoutManager(this, 2)
-        rv_hqs.setHasFixedSize(true)
+        rv_hqs.layoutManager = GridLayoutManager(this, 3)
+        rv_hqs.hasFixedSize()
+
+        viewModel.listComics.observe(this){
+            homeAdapter.addComic(it)
+        }
 
         viewModel.getHQs()
 
-        Log.i("Lista ta pegando?", listHQs.toString())
-    }
-
-    override fun OnClickItem(position: Int) {
-        val hq = listHQs[position]
-        val intent = Intent(this, DetailsComics::class.java)
-        intent.putExtra("hq", hq.id)
-        startActivity(intent)
     }
 }

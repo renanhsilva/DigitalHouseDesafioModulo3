@@ -6,4 +6,6 @@ import java.io.Serializable
 class Image (
     @SerializedName("path") val path: String,
     @SerializedName("extension") val extension: String
-) : Serializable
+) : Serializable {
+    override fun toString() = "$path.$extension".replace("http://", "https://")
+}

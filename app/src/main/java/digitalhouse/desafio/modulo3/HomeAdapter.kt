@@ -1,5 +1,6 @@
 package digitalhouse.desafio.modulo3
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,44 +12,44 @@ import digitalhouse.desafio.modulo3.Serialized.Comic
 import kotlinx.android.synthetic.main.item_hq.view.*
 
 
-class HomeAdapter(val hqs: ArrayList<Comic>, val listener: OnClickItemListener) :
-    RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter() : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
-    inner class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    var listComics = arrayListOf<Comic>()
+
+    class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val ivComics: ImageView = itemView.img_comics
         val tvComics: TextView = itemView.tv_comics
 
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(p0: View?) {
-            val position = adapterPosition
-            if (position != RecyclerView.NO_POSITION)
-                listener.OnClickItem(position)
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val itemView: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_hq, parent, false)
+        val itemView: View = LayoutInflater.from(parent.context).inflate(R.layout.item_hq, parent, false)
         return HomeViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        val comic = hqs[position]
+        val hq = listComics[position]
 
-        holder.tvComics.text = "#${comic.id}"
-        Glide.with(holder.ivComics.context).asBitmap()
-            .load(comic.image.toString())
-            .into(holder.ivComics)
+        holder.tvComics.text = "#${hq.id}"
 
+        if (hq.image.isNullOrEmpty()){
+            holder.ivComics.setImageResource(R.drawable.marvel_logo)
+        } else {
+            Glide.with(holder.ivComics.context).asBitmap()
+                .load(hq.image.first().toString())
+                .into(holder.ivComics)
+        }
+        holder.ivComics.setOnClickListener{
+            var intent = Intent(it.context,DetailsComics::class.java)
+            intent.putExtra("hq", hq.id)
+            it.context.startActivity(intent)
+        }
     }
 
-    override fun getItemCount() = hqs.size
+    override fun getItemCount() = listComics.size
 
-    interface OnClickItemListener {
-        fun OnClickItem(position: Int)
+    fun addComic(list: ArrayList<Comic>){
+        listComics.addAll(list)
+        notifyDataSetChanged()
     }
 }

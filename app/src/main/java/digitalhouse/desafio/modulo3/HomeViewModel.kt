@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import digitalhouse.desafio.modulo3.Serialized.Comic
 import digitalhouse.desafio.modulo3.Serialized.Data
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,7 +17,7 @@ import java.security.MessageDigest
 
 class HomeViewModel(val marvelApi: ServiceAPI) : ViewModel() {
 
-    val listComics = MutableLiveData<Data>()
+    val listComics = MutableLiveData<ArrayList<Comic>>()
     val pubKey = "76c3653804591bc119feb8a8bced8a2a"
     val privKey = "c66e227de4893ad4b2d2c1578517b83a87d9c606"
     val ts = System.currentTimeMillis()
@@ -31,7 +32,7 @@ class HomeViewModel(val marvelApi: ServiceAPI) : ViewModel() {
                 hash = getHash(ts.toString() + privKey + pubKey)
             ).get("data")
             val result = Gson().fromJson(response, object : TypeToken<Data>() {}.type) as Data
-            listComics.value = result
+            listComics.value = result.results
             Log.i("resultado_api", listComics.value.toString())
         }
     }
