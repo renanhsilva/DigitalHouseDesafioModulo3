@@ -31,7 +31,6 @@
         android:layout_height="52dp"
         android:background="#FF0000"
         android:gravity="center"
-        android:text="Welcome to The Marvel HQ's"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
