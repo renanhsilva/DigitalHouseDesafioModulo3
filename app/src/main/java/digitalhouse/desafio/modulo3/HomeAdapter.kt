@@ -32,11 +32,11 @@ class HomeAdapter() : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
         holder.tvComics.text = "#${hq.id}"
 
-        if (hq.image.isNullOrEmpty()){
+        if (hq.images.isNullOrEmpty()){
             holder.ivComics.setImageResource(R.drawable.marvel_logo)
         } else {
             Glide.with(holder.ivComics.context).asBitmap()
-                .load(hq.image.first().toString())
+                .load(hq.images.first().toString())
                 .into(holder.ivComics)
         }
         holder.ivComics.setOnClickListener{
