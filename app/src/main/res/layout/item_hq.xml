@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="7dp">
+
+    <ImageView
+        android:id="@+id/img_comics"
+        android:background="@color/white"
+        android:padding="3dp"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/comics_spider_man"/>
+    <TextView
+        android:id="@+id/txt_comics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#2"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

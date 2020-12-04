@@ -16,13 +16,29 @@
         app:titleTextColor="@color/white"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="200dp"
+        android:orientation="vertical"
+        tools:context=".LoginActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="#FF0000"
+        android:gravity="center"
+        android:text="Welcome to The Marvel HQ's"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:backgroundTint="@color/white"
+            android:background="@color/white"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -78,5 +94,5 @@
                 android:textSize="18dp" />
 
         </LinearLayout>
-
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

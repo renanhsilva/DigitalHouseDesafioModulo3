@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:background="#FF0000"
+            android:background="@color/red"
             android:gravity="center"
             android:text="Welcome to The Marvel HQ's"
             android:textColor="@color/white"
@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:hint="Email"
-                    android:textColorHint="#FF0000" />
+                    android:textColorHint="@color/red" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +57,7 @@
                     android:background="@color/white"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:textColorHint="#FF0000" />
+                    android:textColorHint="@color/red" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <CheckBox
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#FF0000"
+                android:backgroundTint="@color/red"
                 android:text="Login" />
 
             <TextView
