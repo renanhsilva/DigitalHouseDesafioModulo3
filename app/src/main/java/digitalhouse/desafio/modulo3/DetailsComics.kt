@@ -56,7 +56,7 @@ class DetailsComics : AppCompatActivity() {
         if (tv_price.text.isNullOrEmpty()){
             tv_price.text = "Without Price"
         }else {
-            tv_price.text = hq.prices.toString()
+            tv_price.text = hq.prices.first().toString()
         }
 
         if (tv_pages.text.isNullOrEmpty()){
