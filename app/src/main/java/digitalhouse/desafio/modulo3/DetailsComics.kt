@@ -35,35 +35,11 @@ class DetailsComics : AppCompatActivity() {
 
         val hq = intent.getSerializableExtra("hq") as Comic
 
-        if (tv_title.text.isNullOrEmpty()){
-            tv_title.text = "Without Title"
-        }else {
             tv_title.text = hq.title
-        }
-
-        if (tv_description.text.isNullOrEmpty()){
-            tv_description.text = "Without Description"
-        }else {
             tv_description.text = hq.description
-        }
-
-        if (hq.dates.first().getComicDate().isNullOrEmpty()){
-            tv_publish.text = "Without Published Date"
-        }else {
             tv_publish.text = hq.dates.first().getComicDate()
-        }
-
-        if (tv_price.text.isNullOrEmpty()){
-            tv_price.text = "Without Price"
-        }else {
             tv_price.text = hq.prices.first().toString()
-        }
-
-        if (tv_pages.text.isNullOrEmpty()){
-            tv_pages.text = "Without Pages"
-        }else {
             tv_pages.text = hq.pageCount.toString()
-        }
 
         if (hq.images.isNullOrEmpty()){
             img_banner.setImageResource(R.drawable.marvel_logo)
