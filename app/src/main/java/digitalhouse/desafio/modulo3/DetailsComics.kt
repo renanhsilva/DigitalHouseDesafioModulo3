@@ -1,5 +1,6 @@
 package digitalhouse.desafio.modulo3
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -30,6 +31,7 @@ class DetailsComics : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_comics)
+        setSupportActionBar(tb_details_comics)
 
         val hq = intent.getSerializableExtra("hq") as Comic
 
@@ -78,5 +80,15 @@ class DetailsComics : AppCompatActivity() {
                 .into(img_cover)
         }
 
+        img_banner.setOnClickListener {
+            var intent = Intent(it.context,ZoomImagemActivity::class.java)
+            intent.putExtra("hq",hq)
+            it.context.startActivity(intent)
+        }
+
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
