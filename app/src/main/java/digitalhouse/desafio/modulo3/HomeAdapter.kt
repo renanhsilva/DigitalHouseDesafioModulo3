@@ -41,7 +41,7 @@ class HomeAdapter() : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         }
         holder.ivComics.setOnClickListener{
             var intent = Intent(it.context,DetailsComics::class.java)
-            intent.putExtra("hq", hq.id)
+            intent.putExtra("hq", hq)
             it.context.startActivity(intent)
         }
     }

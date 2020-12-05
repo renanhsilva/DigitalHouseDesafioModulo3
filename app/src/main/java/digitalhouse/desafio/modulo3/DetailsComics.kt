@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import digitalhouse.desafio.modulo3.Serialized.Comic
 import kotlinx.android.synthetic.main.activity_details_comics.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,47 +31,52 @@ class DetailsComics : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_comics)
 
-//        val comicId: Int = intent.getIntExtra("hq", 0).toInt()
-//
-//        img_back.setOnClickListener { onBackPressed() }
-//        try {
-//            viewModel.getHQs()
-//        } catch (e: Exception) {
-//            Log.i(this.javaClass.name, e.message.toString())
-//            Toast.makeText(this, "Failed to connect", Toast.LENGTH_LONG).show()
-//        }
+        val hq = intent.getSerializableExtra("hq") as Comic
 
-//        viewModel.hq.observe(this) {
-//            hq = it
-//            val comic = hq.results[0]
-//            tv_title.text = comic.title
-//
-//            tv_description.text = comic.description
-//
-//            if (comic.pageCount != 0)
-//                tv_pages.text = comic.pageCount.toString()
-//            else tv_pages.text = "No data"
-//
-//            if (comic.prices[0].price != 0.0)
-//                tv_price.text = comic.prices[0].price.toString()
-//            else tv_price.text = "No data"
-//
-//            val jsDate = (comic.dates.find { s -> s.type == "focDate" })?.date.toString()
-//            if (jsDate.toCharArray()[0] != '-') {
-//                val javaDate: Date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX").parse(jsDate)
-//                val dateFmt = SimpleDateFormat("MMMM dd, yyyy", Locale.US)
-//                val date = dateFmt.format(javaDate)
-//                tv_publish.text = date
-//            } else tv_publish.text = "No data"
+        if (tv_title.text.isNullOrEmpty()){
+            tv_title.text = "Without Title"
+        }else {
+            tv_title.text = hq.title
+        }
 
-//            Glide.with(this)
-//                .load("${comic.thumbnail.path}.${comic.thumbnail.extension}")
-//                .into(img_cover)
-//
-//            Glide.with(this)
-//                .load("${comic.thumbnail.path}.${comic.thumbnail.extension}")
-//                .centerCrop()
-//                .into(img_banner)
-//        }
+        if (tv_description.text.isNullOrEmpty()){
+            tv_description.text = "Without Description"
+        }else {
+            tv_description.text = hq.description
+        }
+
+        if (hq.dates.first().getComicDate().isNullOrEmpty()){
+            tv_publish.text = "Without Published Date"
+        }else {
+            tv_publish.text = hq.dates.first().getComicDate()
+        }
+
+        if (tv_price.text.isNullOrEmpty()){
+            tv_price.text = "Without Price"
+        }else {
+            tv_price.text = hq.prices.toString()
+        }
+
+        if (tv_pages.text.isNullOrEmpty()){
+            tv_pages.text = "Without Pages"
+        }else {
+            tv_pages.text = hq.pageCount.toString()
+        }
+
+        if (hq.images.isNullOrEmpty()){
+            img_banner.setImageResource(R.drawable.marvel_logo)
+        } else {
+            Glide.with(this).asBitmap()
+                .load(hq.images.first().toString())
+                .into(img_banner)
+        }
+        if (hq.images.isNullOrEmpty()){
+            img_cover.setImageResource(R.drawable.marvel_logo)
+        } else {
+            Glide.with(this).asBitmap()
+                .load(hq.images.first().toString())
+                .into(img_cover)
+        }
+
     }
 }
