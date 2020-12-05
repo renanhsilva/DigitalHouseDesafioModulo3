@@ -7,12 +7,13 @@ import kotlinx.android.synthetic.main.activity_zoom_imagem.*
 import android.app.Activity
 import android.content.Intent
 import android.view.View
+import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        setSupportActionBar(bc_zoom_imagem)
+        setSupportActionBar(tb_register)
 
         findViewById<Button>(R.id.btn_save).setOnClickListener(openActivity(HomeActivity::class.java))
     }

@@ -25,7 +25,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@drawable/marvel_logo"
+                android:scaleType="centerCrop"/>
 
             <ImageView
                 android:id="@+id/img_cover"
@@ -38,7 +39,7 @@
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@drawable/marvel_logo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
